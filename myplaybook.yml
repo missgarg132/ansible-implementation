@@ -1,7 +1,7 @@
 ---
-#This playbook sets up whole stack
+#This playbook sets up Linux server
 
-- name: Provisioning a remote server
+- name: Provisioning a Linux server
   hosts: localhost
   gather_facts: yes
   become: yes
@@ -35,9 +35,10 @@
 
   roles:
      - base
-     - users
+#     - users
      - ufw
      - ntp
+ #    - nginx
  # tasks:
    # - name: Install sql database
     #  yum: 
