@@ -7,6 +7,11 @@
   become: yes
   become_user: root
   become_method: sudo
+  
+  vars: 
+       username: anmol
+       password: Admin@123
+       public_key: ~/id_rsa.pub
   tasks:
      - name: Debug gathered facts
        debug:
