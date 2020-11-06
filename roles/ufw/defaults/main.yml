@@ -1,0 +1,4 @@
+---
+# defaults file for ufw
+ufw_open_ports: ['80','43']
+

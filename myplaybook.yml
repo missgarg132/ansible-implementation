@@ -1,0 +1,61 @@
+---
+#This playbook sets up whole stack
+
+- name: Provisioning a remote server
+  hosts: localhost
+  gather_facts: yes
+  become: yes
+  become_user: root
+  become_method: sudo
+  tasks:
+     - name: Say Hello
+       debug:
+          msg: 'Hello'
+
+     - name: Debug gathered facts
+       debug:
+          var: item
+       with_items:
+          - "{{ ansible_lsb }}"
+          - "{{ ansible_default_ipv4 }}"
+          - "{{ ansible_date_time }}"
+          - "{{ ansible_dns }}"
+          - "{{ ansible_env }}"
+          - "{{ ansible_hostname }}"
+          - "{{ ansible_memory_mb }}"
+          - "{{ ansible_memfree_mb }}"
+
+     - name: Capture OS name
+       command: uname -a
+       register: os_name
+
+     - name: Debug Os Name
+       debug:
+          var: os_name.stdout   
+
+  roles:
+     - base
+     - users
+     - ufw
+     - ntp
+ # tasks:
+   # - name: Install sql database
+    #  yum: 
+     #    name: mysql-server
+      #   state: latest
+   # - name: Install nginx
+    #  apt: 
+     #    name: nginx
+      #   state: latest
+   # - name: Restart nginx
+    #  service:
+     #    name: nginx
+      #   state: restarted 
+   # - name: Install tree
+    #  apt:
+     #    name: tree
+      #   state: present
+       #  update_cache: yes
+     # tags:
+      #   - tree
+...
