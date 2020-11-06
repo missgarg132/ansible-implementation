@@ -1,14 +1,16 @@
 ---
-- name: Upgrade packages
-  apt: upgrade=safe
-  
 - name: Install packages
   apt:
-    name: "{{ item }}"
+    pkg: "{{ item }}"
     state: present
     update_cache: yes
   with_items:
   - fail2ban
-  - git-core
+  - git
   - redis-server
   - ufw
+  - tmux
+  - htop
+  - vim
+
+
